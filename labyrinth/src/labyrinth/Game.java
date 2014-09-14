@@ -25,6 +25,7 @@ public class Game extends Canvas implements Runnable {
     private final int WIDTH = 512;
     private final int HEIGHT = 512;
     private final int SCALE = 1;
+    private final int TIME = 50;
     private final Dimension SIZE = new Dimension((WIDTH * SCALE), (HEIGHT * SCALE));
     public final String TITLE = "Maze Game Demo | Res: " + (WIDTH * SCALE) + "x" + (HEIGHT * SCALE) + " | ";
 
@@ -40,7 +41,7 @@ public class Game extends Canvas implements Runnable {
     private LoadLevel loadLevel;
     private Player player;
 
-    private int time = 20;
+    private int time = TIME;
 
     public Game() {
         setPreferredSize(SIZE);
@@ -125,7 +126,7 @@ public class Game extends Canvas implements Runnable {
             input.update();
             player.update2();
             if (input.R) {
-                time = 20;
+                time = TIME;
             }
             now = System.currentTimeMillis();
         }
