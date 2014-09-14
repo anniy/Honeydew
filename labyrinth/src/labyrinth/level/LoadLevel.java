@@ -31,8 +31,8 @@ public class LoadLevel {
     }
 
     public void render(Render render) {
-        for (int y = 0; y < render.HEIGHT + 32 >> 5; y++) {
-            for (int x = 0; x < render.WIDTH + 32 >> 5; x++) {
+        for (int y = 0; y < render.HEIGHT + 16 >> 5; y++) {
+            for (int x = 0; x < render.WIDTH + 16 >> 5; x++) {
                 //System.out.println(x + "; " + y);
                 getTile(x, y).render(x, y, render);
             }

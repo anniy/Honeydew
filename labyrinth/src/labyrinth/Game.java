@@ -17,12 +17,13 @@ import labyrinth.gfx.Render;
 import labyrinth.input.Input;
 import labyrinth.level.LoadLevel;
 import labyrinth.player.Player;
+import labyrinth.status.Status;
 
 public class Game extends Canvas implements Runnable {
 
     private static final long serialVersionUID = 1L;
 
-    private final int WIDTH = 512;
+    private final int WIDTH = 512 * 2;
     private final int HEIGHT = 512;
     private final int SCALE = 1;
     private final int TIME = 50;
@@ -40,6 +41,7 @@ public class Game extends Canvas implements Runnable {
     private Input input;
     private LoadLevel loadLevel;
     private Player player;
+    private Status status;
 
     private int time = TIME;
 
@@ -52,8 +54,9 @@ public class Game extends Canvas implements Runnable {
         render = new Render(WIDTH, HEIGHT);
         input = new Input();
         addKeyListener(input);
-        loadLevel = new LoadLevel("/level.png");
+        loadLevel = new LoadLevel("/map/level.png");
         player = new Player(loadLevel, (1 * 32), (14 * 32), input);
+        status = new Status("ingame");
     }
 
     public void start() {
@@ -114,6 +117,8 @@ public class Game extends Canvas implements Runnable {
                 now += 1000;
             }
         }
+        
+        String currentStatus = status.getStatus();
 
         if (time == 0) {
             Player.won = 1;
@@ -149,8 +154,20 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
         g.setFont(new Font("SansSerif", Font.BOLD, 12));
-        g.setColor(new Color(0, 255, 255));
+        g.setColor(new Color(255, 255, 255));
         g.drawString("Time: " + time, 10, 20);
+        //if(gameStatus == "escape") {
+        	 //Graphics2D g2d = (Graphics2D) g;
+             /* g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+             g2d.setFont(new Font("SansSerif", Font.BOLD, 48));
+             g2d.setColor(new Color(0, 255, 255));
+             g2d.drawString("escape!", WIDTH * SCALE / 4, HEIGHT * SCALE / 2);
+             g2d.setFont(new Font("SansSerif", Font.BOLD, 22));*/
+        	 //g2d.drawRect (150, 150, 200, 200);    //can use either of the two//
+        	// g2d.fillRect (150, 150, 200, 200);
+        	 //g2d.setColor(new Color(1, 0, 0));
+             //g2d.drawString("Press 'R' to reset!", WIDTH * SCALE / 4, HEIGHT * SCALE / 3);
+        //}
         if (Player.won == 1) {
             Graphics2D g2d = (Graphics2D) g;
             g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);

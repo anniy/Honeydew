@@ -54,7 +54,7 @@ public class Player {
 
     public void update2() {
         if (input.R) {
-            setXY((1 * 32), (14 * 32));
+            setXY((1 * 16), (14 * 16));
             Player.won = 0;
         }
     }
@@ -88,12 +88,9 @@ public class Player {
             if (solid) {
                 walking = true;
             }
-            
-            
             if (loadLevel.getTile(xt, yt) == Tile.finish) {
                 won = 2;
-            
-           }
+            }
         }
 
         return solid;
