@@ -86,14 +86,14 @@ public class Player {
                 solid = true;
             }
             if (solid) {
-                walking = false;
+                walking = true;
             }
-            if (loadLevel.getTile(xt, yt) == Tile.block) {
-                won = 1;
-            }
+            
+            
             if (loadLevel.getTile(xt, yt) == Tile.finish) {
                 won = 2;
-            }
+            
+           }
         }
 
         return solid;
